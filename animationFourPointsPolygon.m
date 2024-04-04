@@ -5,24 +5,28 @@ function L=animationFourPointsPolygon(L,pointPairs,step,angle)
     figure("Name","Animation")
     L=drawPolygon(L,pointPairs,1);
     imshow(L);
-    drawnow
+    %drawnow
     %start first by make polygon moving back and forth in horizontal movement
+    i=0;
     while(1)
-        %{
-        pointPairs(:,1)+=step;
+
+        pointPairs(:,1)+=step
         %move backward direction if the cube touches the image's boundary
-        if(sum(pointPairs(:,1) >= 246)>=1 || sum(pointPairs(:,1) <= 1)>=1)
+        if(sum(pointPairs(:,1) >= 256)>=1 || sum(pointPairs(:,1) <= 1)>=1)
             step=-step;
             pointPairs(:,1)+=step;
         endif
         L=drawPolygon(zeros(256,256),pointPairs,1);
         imshow(L);
         drawnow
-        %}
+        pause(0.1);
+
         pointPairs=rotateFunction(pointPairs,angle);
         L=drawPolygon(zeros(256,256),pointPairs,1);
         imshow(L);
         drawnow
+        pause(0.1)
+
     endwhile
 
 endfunction
